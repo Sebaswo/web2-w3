@@ -43,7 +43,6 @@ const getCoordinates = (req: Request, res: Response, next: NextFunction) => {
     // coordinates below should be an array of GPS coordinates in decimal format: [longitude, latitude]
     new ExifImage({image: req.file?.path}, (error, exifData) => {
       if (error) {
-        console.log('eka', error);
         res.locals.coords = defaultPoint;
         next();
       } else {
@@ -64,14 +63,12 @@ const getCoordinates = (req: Request, res: Response, next: NextFunction) => {
           res.locals.coords = coordinates;
           next();
         } catch (err) {
-          console.log('toka', err);
           res.locals.coords = defaultPoint;
           next();
         }
       }
     });
   } catch (error) {
-    console.log('kolmas', error);
     res.locals.coords = defaultPoint;
     next();
   }
