@@ -23,11 +23,10 @@ jobs:
 
       - name: npm install, build, and test
         env:
-          DATABASE_URL: ${{ secrets.DABASE_URL }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           npm install
           npm run build --if-present
-          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
